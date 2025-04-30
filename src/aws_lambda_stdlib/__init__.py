@@ -4,11 +4,11 @@ import boto3
 from botocore.exceptions import ClientError
 
 
-def get_secrets(secret_name) -> (str, str, str):
+def get_secrets(region, secret_name) -> (str, str, str):
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',
-        region_name='us-east-1'
+        region_name=region
     )
 
     try:
