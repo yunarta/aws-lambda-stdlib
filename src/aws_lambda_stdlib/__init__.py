@@ -14,8 +14,7 @@ def get_secrets(secret_name) -> (str, str, str):
     try:
         secret_value = client.get_secret_value(SecretId=secret_name)
         if 'SecretString' in secret_value:
-            secrets = json.loads(secret_value['SecretString'])
-            return secrets['root-ca'], secrets['certificate'], secrets['private-key'],
+            return json.loads(secret_value['SecretString'])
     except ClientError as e:
         raise e
 
